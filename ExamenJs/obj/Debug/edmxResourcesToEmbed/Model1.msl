@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bdjsModelStoreContainer" CdmEntityContainer="BDContext">
+    <EntitySetMapping Name="Cours">
+      <EntityTypeMapping TypeName="bdjsModel.Cours">
+        <MappingFragment StoreEntitySet="Cours">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nomCours" ColumnName="nomCours" />
+          <ScalarProperty Name="jours" ColumnName="jours" />
+          <ScalarProperty Name="heureD" ColumnName="heureD" />
+          <ScalarProperty Name="heureF" ColumnName="heureF" />
+          <ScalarProperty Name="coef" ColumnName="coef" />
+          <ScalarProperty Name="salleId" ColumnName="salleId" />
+          <ScalarProperty Name="matiereId" ColumnName="matiereId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Matiere">
+      <EntityTypeMapping TypeName="bdjsModel.Matiere">
+        <MappingFragment StoreEntitySet="Matiere">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salle">
+      <EntityTypeMapping TypeName="bdjsModel.Salle">
+        <MappingFragment StoreEntitySet="Salle">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

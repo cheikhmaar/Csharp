@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Dotnet2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Apprenant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="matricule" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="datenaissance" Type="date" Nullable="false" />
+          <Property Name="idPromo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="idModule" />
+          </Key>
+          <Property Name="idModule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="coef" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promo">
+          <Key>
+            <PropertyRef Name="idPromo" />
+          </Key>
+          <Property Name="idPromo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="datedebut" Type="date" Nullable="false" />
+          <Property Name="datefin" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PromoModule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPromo" Type="int" Nullable="false" />
+          <Property Name="idModule" Type="int" Nullable="false" />
+          <Property Name="nbseance" Type="int" Nullable="false" />
+          <Property Name="dureeseance" Type="int" Nullable="false" />
+          <Property Name="jourseance" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="notevalid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="heuredebut" Type="time" Precision="7" Nullable="false" />
+          <Property Name="heurefin" Type="time" Precision="7" Nullable="false" />
+          <Property Name="idPromoModule" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Apprenant_Promo1">
+          <End Role="Promo" Type="Self.Promo" Multiplicity="1" />
+          <End Role="Apprenant" Type="Self.Apprenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promo">
+              <PropertyRef Name="idPromo" />
+            </Principal>
+            <Dependent Role="Apprenant">
+              <PropertyRef Name="idPromo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromoModule_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="PromoModule" Type="Self.PromoModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="idModule" />
+            </Principal>
+            <Dependent Role="PromoModule">
+              <PropertyRef Name="idModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromoModule_Promo">
+          <End Role="Promo" Type="Self.Promo" Multiplicity="1" />
+          <End Role="PromoModule" Type="Self.PromoModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promo">
+              <PropertyRef Name="idPromo" />
+            </Principal>
+            <Dependent Role="PromoModule">
+              <PropertyRef Name="idPromo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seance_PromoModule">
+          <End Role="PromoModule" Type="Self.PromoModule" Multiplicity="1" />
+          <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PromoModule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="idPromoModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Dotnet2ModelStoreContainer">
+          <EntitySet Name="Apprenant" EntityType="Self.Apprenant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promo" EntityType="Self.Promo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PromoModule" EntityType="Self.PromoModule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seance" EntityType="Self.Seance" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Apprenant_Promo1" Association="Self.FK_Apprenant_Promo1">
+            <End Role="Promo" EntitySet="Promo" />
+            <End Role="Apprenant" EntitySet="Apprenant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromoModule_Module" Association="Self.FK_PromoModule_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="PromoModule" EntitySet="PromoModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromoModule_Promo" Association="Self.FK_PromoModule_Promo">
+            <End Role="Promo" EntitySet="Promo" />
+            <End Role="PromoModule" EntitySet="PromoModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seance_PromoModule" Association="Self.FK_Seance_PromoModule">
+            <End Role="PromoModule" EntitySet="PromoModule" />
+            <End Role="Seance" EntitySet="Seance" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Dotnet2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Apprenant" EntityType="Dotnet2Model.Apprenant" />
+          <EntitySet Name="Module" EntityType="Dotnet2Model.Module" />
+          <EntitySet Name="Promo" EntityType="Dotnet2Model.Promo" />
+          <EntitySet Name="PromoModule" EntityType="Dotnet2Model.PromoModule" />
+          <EntitySet Name="Seance" EntityType="Dotnet2Model.Seance" />
+          <AssociationSet Name="FK_Apprenant_Promo1" Association="Dotnet2Model.FK_Apprenant_Promo1">
+            <End Role="Promo" EntitySet="Promo" />
+            <End Role="Apprenant" EntitySet="Apprenant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromoModule_Module" Association="Dotnet2Model.FK_PromoModule_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="PromoModule" EntitySet="PromoModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PromoModule_Promo" Association="Dotnet2Model.FK_PromoModule_Promo">
+            <End Role="Promo" EntitySet="Promo" />
+            <End Role="PromoModule" EntitySet="PromoModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seance_PromoModule" Association="Dotnet2Model.FK_Seance_PromoModule">
+            <End Role="PromoModule" EntitySet="PromoModule" />
+            <End Role="Seance" EntitySet="Seance" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Apprenant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="matricule" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datenaissance" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idPromo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Promo" Relationship="Dotnet2Model.FK_Apprenant_Promo1" FromRole="Apprenant" ToRole="Promo" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="idModule" />
+          </Key>
+          <Property Name="idModule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="coef" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PromoModule" Relationship="Dotnet2Model.FK_PromoModule_Module" FromRole="Module" ToRole="PromoModule" />
+        </EntityType>
+        <EntityType Name="Promo">
+          <Key>
+            <PropertyRef Name="idPromo" />
+          </Key>
+          <Property Name="idPromo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datedebut" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="datefin" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Apprenant" Relationship="Dotnet2Model.FK_Apprenant_Promo1" FromRole="Promo" ToRole="Apprenant" />
+          <NavigationProperty Name="PromoModule" Relationship="Dotnet2Model.FK_PromoModule_Promo" FromRole="Promo" ToRole="PromoModule" />
+        </EntityType>
+        <EntityType Name="PromoModule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPromo" Type="Int32" Nullable="false" />
+          <Property Name="idModule" Type="Int32" Nullable="false" />
+          <Property Name="nbseance" Type="Int32" Nullable="false" />
+          <Property Name="dureeseance" Type="Int32" Nullable="false" />
+          <Property Name="jourseance" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="notevalid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="Dotnet2Model.FK_PromoModule_Module" FromRole="PromoModule" ToRole="Module" />
+          <NavigationProperty Name="Promo" Relationship="Dotnet2Model.FK_PromoModule_Promo" FromRole="PromoModule" ToRole="Promo" />
+          <NavigationProperty Name="Seance" Relationship="Dotnet2Model.FK_Seance_PromoModule" FromRole="PromoModule" ToRole="Seance" />
+        </EntityType>
+        <EntityType Name="Seance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="heuredebut" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="heurefin" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="idPromoModule" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PromoModule" Relationship="Dotnet2Model.FK_Seance_PromoModule" FromRole="Seance" ToRole="PromoModule" />
+        </EntityType>
+        <Association Name="FK_Apprenant_Promo1">
+          <End Type="Dotnet2Model.Promo" Role="Promo" Multiplicity="1" />
+          <End Type="Dotnet2Model.Apprenant" Role="Apprenant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promo">
+              <PropertyRef Name="idPromo" />
+            </Principal>
+            <Dependent Role="Apprenant">
+              <PropertyRef Name="idPromo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromoModule_Module">
+          <End Type="Dotnet2Model.Module" Role="Module" Multiplicity="1" />
+          <End Type="Dotnet2Model.PromoModule" Role="PromoModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="idModule" />
+            </Principal>
+            <Dependent Role="PromoModule">
+              <PropertyRef Name="idModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PromoModule_Promo">
+          <End Type="Dotnet2Model.Promo" Role="Promo" Multiplicity="1" />
+          <End Type="Dotnet2Model.PromoModule" Role="PromoModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promo">
+              <PropertyRef Name="idPromo" />
+            </Principal>
+            <Dependent Role="PromoModule">
+              <PropertyRef Name="idPromo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seance_PromoModule">
+          <End Type="Dotnet2Model.PromoModule" Role="PromoModule" Multiplicity="1" />
+          <End Type="Dotnet2Model.Seance" Role="Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PromoModule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="idPromoModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Dotnet2ModelStoreContainer" CdmEntityContainer="BDContext">
+          <EntitySetMapping Name="Apprenant">
+            <EntityTypeMapping TypeName="Dotnet2Model.Apprenant">
+              <MappingFragment StoreEntitySet="Apprenant">
+                <ScalarProperty Name="idPromo" ColumnName="idPromo" />
+                <ScalarProperty Name="datenaissance" ColumnName="datenaissance" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="matricule" ColumnName="matricule" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Module">
+            <EntityTypeMapping TypeName="Dotnet2Model.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="coef" ColumnName="coef" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="idModule" ColumnName="idModule" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promo">
+            <EntityTypeMapping TypeName="Dotnet2Model.Promo">
+              <MappingFragment StoreEntitySet="Promo">
+                <ScalarProperty Name="datefin" ColumnName="datefin" />
+                <ScalarProperty Name="datedebut" ColumnName="datedebut" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="idPromo" ColumnName="idPromo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PromoModule">
+            <EntityTypeMapping TypeName="Dotnet2Model.PromoModule">
+              <MappingFragment StoreEntitySet="PromoModule">
+                <ScalarProperty Name="notevalid" ColumnName="notevalid" />
+                <ScalarProperty Name="jourseance" ColumnName="jourseance" />
+                <ScalarProperty Name="dureeseance" ColumnName="dureeseance" />
+                <ScalarProperty Name="nbseance" ColumnName="nbseance" />
+                <ScalarProperty Name="idModule" ColumnName="idModule" />
+                <ScalarProperty Name="idPromo" ColumnName="idPromo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seance">
+            <EntityTypeMapping TypeName="Dotnet2Model.Seance">
+              <MappingFragment StoreEntitySet="Seance">
+                <ScalarProperty Name="idPromoModule" ColumnName="idPromoModule" />
+                <ScalarProperty Name="heurefin" ColumnName="heurefin" />
+                <ScalarProperty Name="heuredebut" ColumnName="heuredebut" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

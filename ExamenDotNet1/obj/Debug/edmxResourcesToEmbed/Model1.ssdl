@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bdexamendotnetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Marque">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="libelle" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ordinateur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="refOrdi" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ram" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="disque" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="processeur" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="marqueId" Type="int" Nullable="false" />
+    <Property Name="osId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Os">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="libelle" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Ordinateur_ToMarque">
+    <End Role="Marque" Type="Self.Marque" Multiplicity="1" />
+    <End Role="Ordinateur" Type="Self.Ordinateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marque">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ordinateur">
+        <PropertyRef Name="marqueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ordinateur_ToOs">
+    <End Role="Os" Type="Self.Os" Multiplicity="1" />
+    <End Role="Ordinateur" Type="Self.Ordinateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Os">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ordinateur">
+        <PropertyRef Name="osId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bdexamendotnetModelStoreContainer">
+    <EntitySet Name="Marque" EntityType="Self.Marque" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ordinateur" EntityType="Self.Ordinateur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Os" EntityType="Self.Os" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ordinateur_ToMarque" Association="Self.FK_Ordinateur_ToMarque">
+      <End Role="Marque" EntitySet="Marque" />
+      <End Role="Ordinateur" EntitySet="Ordinateur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ordinateur_ToOs" Association="Self.FK_Ordinateur_ToOs">
+      <End Role="Os" EntitySet="Os" />
+      <End Role="Ordinateur" EntitySet="Ordinateur" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

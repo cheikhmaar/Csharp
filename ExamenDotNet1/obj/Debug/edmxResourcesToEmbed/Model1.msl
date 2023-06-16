@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bdexamendotnetModelStoreContainer" CdmEntityContainer="BDContext">
+    <EntitySetMapping Name="Marque">
+      <EntityTypeMapping TypeName="bdexamendotnetModel.Marque">
+        <MappingFragment StoreEntitySet="Marque">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ordinateur">
+      <EntityTypeMapping TypeName="bdexamendotnetModel.Ordinateur">
+        <MappingFragment StoreEntitySet="Ordinateur">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="refOrdi" ColumnName="refOrdi" />
+          <ScalarProperty Name="ram" ColumnName="ram" />
+          <ScalarProperty Name="disque" ColumnName="disque" />
+          <ScalarProperty Name="processeur" ColumnName="processeur" />
+          <ScalarProperty Name="marqueId" ColumnName="marqueId" />
+          <ScalarProperty Name="osId" ColumnName="osId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Os">
+      <EntityTypeMapping TypeName="bdexamendotnetModel.Os">
+        <MappingFragment StoreEntitySet="Os">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

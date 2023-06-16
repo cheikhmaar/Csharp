@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="44b4982c906640dfb27f8e96a8cd2b65" Name="Diagram1">
+        <EntityTypeShape EntityType="Dotnet2Model.Apprenant" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="Dotnet2Model.Module" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Dotnet2Model.Promo" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="Dotnet2Model.PromoModule" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="Dotnet2Model.Seance" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="Dotnet2Model.FK_Apprenant_Promo1" />
+        <AssociationConnector Association="Dotnet2Model.FK_PromoModule_Module" />
+        <AssociationConnector Association="Dotnet2Model.FK_PromoModule_Promo" />
+        <AssociationConnector Association="Dotnet2Model.FK_Seance_PromoModule" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

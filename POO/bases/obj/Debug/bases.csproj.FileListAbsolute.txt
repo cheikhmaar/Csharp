@@ -1,0 +1,7 @@
+C:\Users\niass028652\source\repos\bases\bases\bin\Debug\bases.exe.config
+C:\Users\niass028652\source\repos\bases\bases\bin\Debug\bases.exe
+C:\Users\niass028652\source\repos\bases\bases\bin\Debug\bases.pdb
+C:\Users\niass028652\source\repos\bases\bases\obj\Debug\bases.csprojAssemblyReference.cache
+C:\Users\niass028652\source\repos\bases\bases\obj\Debug\bases.csproj.CoreCompileInputs.cache
+C:\Users\niass028652\source\repos\bases\bases\obj\Debug\bases.exe
+C:\Users\niass028652\source\repos\bases\bases\obj\Debug\bases.pdb

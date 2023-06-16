@@ -1,0 +1,13 @@
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\bin\Debug\netcoreapp3.1\baseDeCsharp.exe
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\bin\Debug\netcoreapp3.1\baseDeCsharp.deps.json
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\bin\Debug\netcoreapp3.1\baseDeCsharp.runtimeconfig.json
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\bin\Debug\netcoreapp3.1\baseDeCsharp.runtimeconfig.dev.json
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\bin\Debug\netcoreapp3.1\baseDeCsharp.dll
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\bin\Debug\netcoreapp3.1\baseDeCsharp.pdb
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\obj\Debug\netcoreapp3.1\baseDeCsharp.csproj.AssemblyReference.cache
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\obj\Debug\netcoreapp3.1\baseDeCsharp.AssemblyInfoInputs.cache
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\obj\Debug\netcoreapp3.1\baseDeCsharp.AssemblyInfo.cs
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\obj\Debug\netcoreapp3.1\baseDeCsharp.csproj.CoreCompileInputs.cache
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\obj\Debug\netcoreapp3.1\baseDeCsharp.dll
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\obj\Debug\netcoreapp3.1\baseDeCsharp.pdb
+C:\Users\cheik\source\repos\baseDeCsharp\baseDeCsharp\obj\Debug\netcoreapp3.1\baseDeCsharp.genruntimeconfig.cache

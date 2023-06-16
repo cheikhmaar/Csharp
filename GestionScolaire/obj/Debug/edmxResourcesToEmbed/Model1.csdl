@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bdstic2infoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Classe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fraisinscription" Type="Int32" Nullable="false" />
+    <Property Name="mensualite" Type="Int32" Nullable="false" />
+    <Property Name="filiere_id" Type="Int32" Nullable="false" />
+    <Property Name="photo" Type="Binary" MaxLength="200" FixedLength="true" />
+    <NavigationProperty Name="Filiere" Relationship="Self.FK_Classe_ToFiliere" FromRole="Classe" ToRole="Filiere" />
+    <NavigationProperty Name="Inscription" Relationship="Self.FK_Inscription_ToClasse" FromRole="Classe" ToRole="Inscription" />
+  </EntityType>
+  <EntityType Name="Etudiant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="matricule" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="datenaissance" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Inscription" Relationship="Self.FK_Inscription_ToEtudiant" FromRole="Etudiant" ToRole="Inscription" />
+  </EntityType>
+  <EntityType Name="Filiere">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Classe" Relationship="Self.FK_Classe_ToFiliere" FromRole="Filiere" ToRole="Classe" />
+  </EntityType>
+  <EntityType Name="Inscription">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="anneeacademique" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="etudiant_id" Type="Int32" Nullable="false" />
+    <Property Name="classe_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Classe" Relationship="Self.FK_Inscription_ToClasse" FromRole="Inscription" ToRole="Classe" />
+    <NavigationProperty Name="Etudiant" Relationship="Self.FK_Inscription_ToEtudiant" FromRole="Inscription" ToRole="Etudiant" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nomComplet" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="profil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Classe_ToFiliere">
+    <End Role="Filiere" Type="Self.Filiere" Multiplicity="1" />
+    <End Role="Classe" Type="Self.Classe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filiere">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Classe">
+        <PropertyRef Name="filiere_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inscription_ToClasse">
+    <End Role="Classe" Type="Self.Classe" Multiplicity="1" />
+    <End Role="Inscription" Type="Self.Inscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inscription">
+        <PropertyRef Name="classe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inscription_ToEtudiant">
+    <End Role="Etudiant" Type="Self.Etudiant" Multiplicity="1" />
+    <End Role="Inscription" Type="Self.Inscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Etudiant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inscription">
+        <PropertyRef Name="etudiant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Classe" EntityType="Self.Classe" />
+    <EntitySet Name="Etudiant" EntityType="Self.Etudiant" />
+    <EntitySet Name="Filiere" EntityType="Self.Filiere" />
+    <EntitySet Name="Inscription" EntityType="Self.Inscription" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
+    <AssociationSet Name="FK_Classe_ToFiliere" Association="Self.FK_Classe_ToFiliere">
+      <End Role="Filiere" EntitySet="Filiere" />
+      <End Role="Classe" EntitySet="Classe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inscription_ToClasse" Association="Self.FK_Inscription_ToClasse">
+      <End Role="Classe" EntitySet="Classe" />
+      <End Role="Inscription" EntitySet="Inscription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inscription_ToEtudiant" Association="Self.FK_Inscription_ToEtudiant">
+      <End Role="Etudiant" EntitySet="Etudiant" />
+      <End Role="Inscription" EntitySet="Inscription" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

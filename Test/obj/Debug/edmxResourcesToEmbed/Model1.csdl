@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bdtestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Classe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fraisinscription" Type="Int32" Nullable="false" />
+    <Property Name="mensualite" Type="Int32" Nullable="false" />
+    <Property Name="filiere_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Filiere" Relationship="Self.FK_Table_ToFiliere" FromRole="Classe" ToRole="Filiere" />
+  </EntityType>
+  <EntityType Name="Filiere">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Classe" Relationship="Self.FK_Table_ToFiliere" FromRole="Filiere" ToRole="Classe" />
+  </EntityType>
+  <Association Name="FK_Table_ToFiliere">
+    <End Role="Filiere" Type="Self.Filiere" Multiplicity="1" />
+    <End Role="Classe" Type="Self.Classe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filiere">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Classe">
+        <PropertyRef Name="filiere_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Classe" EntityType="Self.Classe" />
+    <EntitySet Name="Filiere" EntityType="Self.Filiere" />
+    <AssociationSet Name="FK_Table_ToFiliere" Association="Self.FK_Table_ToFiliere">
+      <End Role="Filiere" EntitySet="Filiere" />
+      <End Role="Classe" EntitySet="Classe" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

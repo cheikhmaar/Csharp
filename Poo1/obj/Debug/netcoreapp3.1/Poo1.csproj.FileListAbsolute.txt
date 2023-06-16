@@ -1,0 +1,13 @@
+C:\Users\cheik\source\repos\Poo1\bin\Debug\netcoreapp3.1\Poo1.exe
+C:\Users\cheik\source\repos\Poo1\bin\Debug\netcoreapp3.1\Poo1.deps.json
+C:\Users\cheik\source\repos\Poo1\bin\Debug\netcoreapp3.1\Poo1.runtimeconfig.json
+C:\Users\cheik\source\repos\Poo1\bin\Debug\netcoreapp3.1\Poo1.runtimeconfig.dev.json
+C:\Users\cheik\source\repos\Poo1\bin\Debug\netcoreapp3.1\Poo1.dll
+C:\Users\cheik\source\repos\Poo1\bin\Debug\netcoreapp3.1\Poo1.pdb
+C:\Users\cheik\source\repos\Poo1\obj\Debug\netcoreapp3.1\Poo1.csproj.AssemblyReference.cache
+C:\Users\cheik\source\repos\Poo1\obj\Debug\netcoreapp3.1\Poo1.AssemblyInfoInputs.cache
+C:\Users\cheik\source\repos\Poo1\obj\Debug\netcoreapp3.1\Poo1.AssemblyInfo.cs
+C:\Users\cheik\source\repos\Poo1\obj\Debug\netcoreapp3.1\Poo1.csproj.CoreCompileInputs.cache
+C:\Users\cheik\source\repos\Poo1\obj\Debug\netcoreapp3.1\Poo1.dll
+C:\Users\cheik\source\repos\Poo1\obj\Debug\netcoreapp3.1\Poo1.pdb
+C:\Users\cheik\source\repos\Poo1\obj\Debug\netcoreapp3.1\Poo1.genruntimeconfig.cache

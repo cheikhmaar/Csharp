@@ -1,0 +1,31 @@
+﻿<Window x:Class="scolarite.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:scolarite"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="667.123" Width="604">
+    <Grid>
+        <Label Content="AJOUTER UNE CLASSE" HorizontalAlignment="Left" Margin="218,24,0,0" VerticalAlignment="Top"/>
+        <Label Content="CODE :" HorizontalAlignment="Left" Margin="64,73,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="codeTbx" HorizontalAlignment="Left" Height="23" Margin="218,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340"/>
+        <Label Content="LIBELLE :" HorizontalAlignment="Left" Margin="64,111,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="libelleTbx" HorizontalAlignment="Left" Height="23" Margin="218,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340"/>
+        <Label Content="FRAIS D'INSCRIPRION :" HorizontalAlignment="Left" Margin="64,151,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="fraisinscriptionTbx" HorizontalAlignment="Left" Height="23" Margin="218,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340"/>
+        <TextBox x:Name="mensualiteTbx" HorizontalAlignment="Left" Height="23" Margin="218,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340"/>
+        <Label Content="MENSUALITE :" HorizontalAlignment="Left" Margin="64,190,0,0" VerticalAlignment="Top"/>
+        <Button Content="ENREGISTRER" HorizontalAlignment="Left" Margin="237,233,0,0" VerticalAlignment="Top" Width="137" Click="Button_Click"/>
+        <DataGrid AutoGenerateColumns="False" x:Name="classeDtg" HorizontalAlignment="Left" Height="173" Margin="64,276,0,0" VerticalAlignment="Top" Width="494">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="CODE" Binding="{Binding code}"/>
+                <DataGridTextColumn Header="LIBELLE" Binding="{Binding libelle}"/>
+                <DataGridTextColumn Header="FRAIS D'INSCRIPTION" Binding="{Binding fraisinscription}"/>
+                <DataGridTextColumn Header="MENSUALITE" Binding="{Binding mensualite}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </Grid>
+</Window>

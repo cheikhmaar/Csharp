@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bdexamendotnetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Marque">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Ordinateur" Relationship="Self.FK_Ordinateur_ToMarque" FromRole="Marque" ToRole="Ordinateur" />
+  </EntityType>
+  <EntityType Name="Ordinateur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="refOrdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ram" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="disque" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="processeur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="marqueId" Type="Int32" Nullable="false" />
+    <Property Name="osId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Marque" Relationship="Self.FK_Ordinateur_ToMarque" FromRole="Ordinateur" ToRole="Marque" />
+    <NavigationProperty Name="Os" Relationship="Self.FK_Ordinateur_ToOs" FromRole="Ordinateur" ToRole="Os" />
+  </EntityType>
+  <EntityType Name="Os">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Ordinateur" Relationship="Self.FK_Ordinateur_ToOs" FromRole="Os" ToRole="Ordinateur" />
+  </EntityType>
+  <Association Name="FK_Ordinateur_ToMarque">
+    <End Role="Marque" Type="Self.Marque" Multiplicity="1" />
+    <End Role="Ordinateur" Type="Self.Ordinateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marque">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ordinateur">
+        <PropertyRef Name="marqueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ordinateur_ToOs">
+    <End Role="Os" Type="Self.Os" Multiplicity="1" />
+    <End Role="Ordinateur" Type="Self.Ordinateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Os">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ordinateur">
+        <PropertyRef Name="osId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Marque" EntityType="Self.Marque" />
+    <EntitySet Name="Ordinateur" EntityType="Self.Ordinateur" />
+    <EntitySet Name="Os" EntityType="Self.Os" />
+    <AssociationSet Name="FK_Ordinateur_ToMarque" Association="Self.FK_Ordinateur_ToMarque">
+      <End Role="Marque" EntitySet="Marque" />
+      <End Role="Ordinateur" EntitySet="Ordinateur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ordinateur_ToOs" Association="Self.FK_Ordinateur_ToOs">
+      <End Role="Os" EntitySet="Os" />
+      <End Role="Ordinateur" EntitySet="Ordinateur" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bdjsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomCours" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jours" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="heureD" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="heureF" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="coef" Type="Int32" Nullable="false" />
+    <Property Name="salleId" Type="Int32" Nullable="false" />
+    <Property Name="matiereId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Matiere" Relationship="Self.FK_Cours_ToMatiere" FromRole="Cours" ToRole="Matiere" />
+    <NavigationProperty Name="Salle" Relationship="Self.FK_Cours_ToSalle" FromRole="Cours" ToRole="Salle" />
+  </EntityType>
+  <EntityType Name="Matiere">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libelle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK_Cours_ToMatiere" FromRole="Matiere" ToRole="Cours" />
+  </EntityType>
+  <EntityType Name="Salle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="libelle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK_Cours_ToSalle" FromRole="Salle" ToRole="Cours" />
+  </EntityType>
+  <Association Name="FK_Cours_ToMatiere">
+    <End Role="Matiere" Type="Self.Matiere" Multiplicity="1" />
+    <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Matiere">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="matiereId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cours_ToSalle">
+    <End Role="Salle" Type="Self.Salle" Multiplicity="1" />
+    <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="salleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cours" EntityType="Self.Cours" />
+    <EntitySet Name="Matiere" EntityType="Self.Matiere" />
+    <EntitySet Name="Salle" EntityType="Self.Salle" />
+    <AssociationSet Name="FK_Cours_ToMatiere" Association="Self.FK_Cours_ToMatiere">
+      <End Role="Matiere" EntitySet="Matiere" />
+      <End Role="Cours" EntitySet="Cours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cours_ToSalle" Association="Self.FK_Cours_ToSalle">
+      <End Role="Salle" EntitySet="Salle" />
+      <End Role="Cours" EntitySet="Cours" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

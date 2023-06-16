@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1ffdb41cb7cd4454b85c0392df62d6b1" Name="Diagram1">
+        <EntityTypeShape EntityType="bdstic2infoModel.Classe" Width="1.5" PointX="3.125" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdstic2infoModel.Etudiant" Width="1.5" PointX="7.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdstic2infoModel.Filiere" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdstic2infoModel.Inscription" Width="1.5" PointX="5.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdstic2infoModel.Utilisateur" Width="1.5" PointX="8.75" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="bdstic2infoModel.FK_Classe_ToFiliere" ManuallyRouted="false" />
+        <AssociationConnector Association="bdstic2infoModel.FK_Inscription_ToClasse" ManuallyRouted="false" />
+        <AssociationConnector Association="bdstic2infoModel.FK_Inscription_ToEtudiant" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

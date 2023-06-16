@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Dotnet2ModelStoreContainer" CdmEntityContainer="BDContext">
+    <EntitySetMapping Name="Apprenant">
+      <EntityTypeMapping TypeName="Dotnet2Model.Apprenant">
+        <MappingFragment StoreEntitySet="Apprenant">
+          <ScalarProperty Name="idPromo" ColumnName="idPromo" />
+          <ScalarProperty Name="datenaissance" ColumnName="datenaissance" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="matricule" ColumnName="matricule" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Module">
+      <EntityTypeMapping TypeName="Dotnet2Model.Module">
+        <MappingFragment StoreEntitySet="Module">
+          <ScalarProperty Name="coef" ColumnName="coef" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+          <ScalarProperty Name="idModule" ColumnName="idModule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Promo">
+      <EntityTypeMapping TypeName="Dotnet2Model.Promo">
+        <MappingFragment StoreEntitySet="Promo">
+          <ScalarProperty Name="datefin" ColumnName="datefin" />
+          <ScalarProperty Name="datedebut" ColumnName="datedebut" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+          <ScalarProperty Name="idPromo" ColumnName="idPromo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PromoModule">
+      <EntityTypeMapping TypeName="Dotnet2Model.PromoModule">
+        <MappingFragment StoreEntitySet="PromoModule">
+          <ScalarProperty Name="notevalid" ColumnName="notevalid" />
+          <ScalarProperty Name="jourseance" ColumnName="jourseance" />
+          <ScalarProperty Name="dureeseance" ColumnName="dureeseance" />
+          <ScalarProperty Name="nbseance" ColumnName="nbseance" />
+          <ScalarProperty Name="idModule" ColumnName="idModule" />
+          <ScalarProperty Name="idPromo" ColumnName="idPromo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seance">
+      <EntityTypeMapping TypeName="Dotnet2Model.Seance">
+        <MappingFragment StoreEntitySet="Seance">
+          <ScalarProperty Name="idPromoModule" ColumnName="idPromoModule" />
+          <ScalarProperty Name="heurefin" ColumnName="heurefin" />
+          <ScalarProperty Name="heuredebut" ColumnName="heuredebut" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfApp2.FormUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="FormUser" Height="761.252" Width="1043">
+    <Grid HorizontalAlignment="Center">
+        <Label Content="Username" HorizontalAlignment="Left" Margin="134,24,0,0" VerticalAlignment="Top" Width="126" FontSize="22"/>
+        <Label Content="Prenom &amp; Nom" HorizontalAlignment="Left" Margin="82,78,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label Content="Telephone" HorizontalAlignment="Left" Margin="128,138,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label Content="Adresse" HorizontalAlignment="Left" Margin="140,206,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label Content="Profil" HorizontalAlignment="Left" Margin="162,264,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBox x:Name="TextBoxUsername" HorizontalAlignment="Left" Height="38" Margin="303,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271"/>
+        <TextBox x:Name="TextBoxNomComplet" HorizontalAlignment="Left" Height="37" Margin="303,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271"/>
+        <TextBox x:Name="TextBoxTelephone" HorizontalAlignment="Left" Height="39" Margin="303,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271"/>
+        <TextBox x:Name="TextBoxAdresse" HorizontalAlignment="Left" Height="39" Margin="306,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268"/>
+        <ComboBox x:Name="ComboBoxProfil" HorizontalAlignment="Left" Margin="306,268,0,0" VerticalAlignment="Top" Width="270" Height="36"/>
+        <Image x:Name="ViewImage" HorizontalAlignment="Left" Height="222" Margin="673,82,0,0" VerticalAlignment="Top" Width="244"/>
+        <Button x:Name="ButtonChoixPhoto" Content="Choisir photo" HorizontalAlignment="Left" Margin="673,24,0,0" VerticalAlignment="Top" Width="244" Height="38" FontSize="22" Click="ButtonChoixPhoto_Click"/>
+        <Button x:Name="ButtonNouveau" Content="Nouveau" HorizontalAlignment="Left" Margin="62,353,0,0" VerticalAlignment="Top" Width="171" Height="36" FontSize="22" Click="ButtonNouveau_Click"/>
+        <Button x:Name="ButtonEnregistrer" Content="Enregistrer" HorizontalAlignment="Left" Margin="292,353,0,0" VerticalAlignment="Top" Width="171" Height="36" FontSize="22" Click="ButtonEnregistrer_Click"/>
+        <Button x:Name="ButtonModifier" Content="Modifier" HorizontalAlignment="Left" Margin="530,352,0,0" VerticalAlignment="Top" Width="171" Height="36" RenderTransformOrigin="0.5,0.5" FontSize="22" Click="ButtonModifier_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.926"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="790,353,0,0" VerticalAlignment="Top" Width="171" Height="36" FontSize="22" Click="ButtonSupprimer_Click"/>
+        <DataGrid Padding="0,0,2,-8" TextBlock.TextAlignment="Center" TextBlock.FontSize="19" ColumnWidth="*" AutoGenerateColumns="False" x:Name="dataGridUsers" HorizontalAlignment="Center" Height="283" Margin="62,418,0,0" VerticalAlignment="Top" Width="899" SelectionChanged="dataGridUsers_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn TextElement.FontSize="15"  Header="USERNAME" Binding="{Binding username}"/>
+                <DataGridTextColumn TextElement.FontSize="15" Header="PRENOM et NOM" Binding="{Binding nomComplet}"/>
+                <DataGridTextColumn TextElement.FontSize="15" Header="TELEPHONE" Binding="{Binding tel}"/>
+                <DataGridTextColumn TextElement.FontSize="15" Header="ADRESSE" Binding="{Binding adresse}"/>
+                <DataGridTemplateColumn Header="PHOTO" Width="SizeToCells">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Height="40px" Width="70px"  Source="{Binding photo}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn TextElement.FontSize="15" Header="PROFIL" Binding="{Binding profil.libelle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
